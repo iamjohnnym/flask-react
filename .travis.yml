@@ -13,7 +13,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 
 before_script:
-  - make build-dev
+  - make build
 
 script:
   - make cov
