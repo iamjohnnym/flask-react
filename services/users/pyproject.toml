@@ -17,6 +17,7 @@ pytest = "^3.0"
 coverage = "^4.5"
 flake8 = "^3.6"
 bandit = "^1.5"
+flask-debugtoolbar = "^0.10.1"
 
 [build-system]
 requires = ["poetry>=0.12"]
