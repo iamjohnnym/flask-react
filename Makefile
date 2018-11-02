@@ -16,7 +16,7 @@ flake:
 
 .PHONY: test
 test:
-	docker-compose -f docker-compose-${e}.yml run users test
+	docker-compose -f docker-compose-${e}.yml run users python manage.py test
 
 .PHONY: seed-db
 seed-db:
