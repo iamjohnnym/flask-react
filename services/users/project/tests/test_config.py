@@ -32,7 +32,7 @@ class TestTestingConfig(TestCase):
     def test_app_is_testing(self):
         self.assertTrue(
             app.config['SECRET_KEY'] == 'lets kick ass and chew bubble gum'
-
+            )
         self.assertTrue(app.config['TESTING'])
         self.assertFalse(app.config['PRESERVE_CONTEXT_ON_EXCEPTION'])
         self.assertTrue(
