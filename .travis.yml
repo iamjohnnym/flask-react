@@ -16,8 +16,8 @@ before_script:
   - make build-dev
 
 script:
-  - make test
+  - make cov
   - make flake
 
 after_script:
-  - docker-compose -f docker-compose-dev.yml down
+  - make down
