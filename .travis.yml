@@ -17,6 +17,7 @@ before_script:
 
 script:
   - make cov
+  - make bandit
   - make flake
 
 after_script:

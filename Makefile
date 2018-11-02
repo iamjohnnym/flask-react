@@ -10,6 +10,14 @@ export ${e}
 clean:
 	find . -type f -name '*.pyc' -delete
 
+.PHONY: bandit
+bandit:
+# Bandit checks for known security flaws, vulnerabilies, general bad
+# habits and returns non-zero if threshold is met.  -ll means were looking
+# for a severity of medium and confidence of low.
+# ['undefined', 'low', 'medium', 'high']
+	docker-compose -f docker-compose-${e}.yml run users bandit -ll -i -r ./
+
 .PHONY: flake
 flake:
 	docker-compose -f docker-compose-${e}.yml run users flake8 project
@@ -31,10 +39,9 @@ cov:
 	docker-compose -f docker-compose-${e}.yml run users python manage.py cov
 
 .PHONY: build
-build-dev:
+build:
 	docker-compose -f docker-compose-${e}.yml up -d --build
 
 .PHONY: down
-stop-dev:
+down:
 	docker-compose -f docker-compose-${e}.yml down
-
