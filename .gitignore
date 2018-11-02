@@ -1,0 +1,18 @@
+.DS_STORE
+
+# Python
+__pycache__
+
+# env vars
+env
+.envrc
+
+# Virtualenvs
+.venv
+
+# visualstudio code
+.vscode
+
+# coverage
+*/htmlcov
+htmlcov
