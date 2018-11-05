@@ -20,6 +20,7 @@ script:
   - make cov
   - make bandit
   - make flake
+  - make react-scripts
 
 after_script:
   - make down
