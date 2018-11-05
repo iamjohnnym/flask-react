@@ -14,9 +14,15 @@ class App extends Component {
         email: ''
     };
     this.addUser = this.addUser.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   };
   componentDidMount() {
     this.getUsers();
+  };
+  handleChange(event) {
+    const obj = {};
+    obj[event.target.name] = event.target.value;
+    this.setState(obj);
   };
   getUsers() {
     axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
