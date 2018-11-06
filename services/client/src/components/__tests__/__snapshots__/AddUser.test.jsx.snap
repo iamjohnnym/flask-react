@@ -2,6 +2,7 @@
 
 exports[`AddUser renders a snapshot 1`] = `
 <form
+  class=".addUser"
   onSubmit={[Function]}
 >
   <div

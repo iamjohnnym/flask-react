@@ -3,7 +3,7 @@ import React from 'react';
 
 const AddUser = (props) => {
     return (
-        <form onSubmit={(event) => props.addUser(event)}>
+        <form class=".addUser" onSubmit={(event) => props.addUser(event)}>
             <div className='field'>
                 <input
                     name="username"

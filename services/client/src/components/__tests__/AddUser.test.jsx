@@ -13,6 +13,16 @@ test('AddUser renders properly', () => {
     expect(element.find('input').get(2).props.type).toBe('submit');
 });
 
+test('AddUser calls component can mount', () => {
+    const addUser = jest.fn();
+    const wrapper = shallow(<AddUser addUser={addUser}/>);
+    const element = wrapper.find('form');
+    expect(element.find('input').length).toBe(3);
+    const fakeEvent = { preventDefault: () => console.log('preventDefault') };
+    element.find('form').simulate('submit', fakeEvent);
+    expect(addUser).toBeCalledWith(fakeEvent);
+});
+
 test('AddUser renders a snapshot', () => {
     const tree = renderer.create(<AddUser/>).toJSON();
     expect(tree).toMatchSnapshot();
