@@ -13,7 +13,7 @@ test('AddUser renders properly', () => {
     expect(element.find('input').get(2).props.type).toBe('submit');
 });
 
-test('AddUser calls component can mount', () => {
+test('AddUser simulate form submit', () => {
     const addUser = jest.fn();
     const wrapper = shallow(<AddUser addUser={addUser}/>);
     const element = wrapper.find('form');
