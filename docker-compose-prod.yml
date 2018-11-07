@@ -16,6 +16,19 @@ services:
     depends_on:
       - users-db
 
+  client:
+    container_name: client
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile-prod
+      args:
+        - NODE_ENV=production
+        - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
+    ports:
+      - '3007:80'
+    depends_on:
+      - users
+
   users-db:
     build:
       context: ./services/users/project/db
@@ -35,3 +48,4 @@ services:
       - 80:80
     depends_on:
       - users
+      - client

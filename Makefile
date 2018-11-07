@@ -38,6 +38,10 @@ recreate-db:
 cov:
 	docker-compose -f docker-compose-${e}.yml run users python manage.py cov
 
+.PHONY: react-scripts
+react-scripts:
+	docker-compose -f docker-compose-${e}.yml run client react-scripts test --coverage
+
 .PHONY: build
 build:
 	docker-compose -f docker-compose-${e}.yml up -d --build

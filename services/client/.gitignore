@@ -1,23 +1,6 @@
-.DS_STORE
-
-# Python
-__pycache__
-
-# env vars
-env
-.envrc
-
-# Virtualenvs
-.venv
-
-# visualstudio code
-.vscode
-
-# coverage
-/htmlcov
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/services/client/node_modules
 /node_modules
 /.pnp
 .pnp.js

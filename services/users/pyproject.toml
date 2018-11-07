@@ -11,6 +11,7 @@ flask_sqlalchemy = "^2.3"
 flask-testing = "^0.7.1"
 psycopg2 = "^2.7"
 gunicorn = "^19.9"
+flask-cors = "^3.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^3.0"
