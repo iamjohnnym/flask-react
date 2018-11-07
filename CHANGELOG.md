@@ -1,5 +1,8 @@
 # Flask-React ChangeLog
 
+## 0.1.1 2018-11-06
+- Moved github template files from root level to `/.github`
+
 ## 0.1.0 2018-11-06
 - Flask API
 - React Client
