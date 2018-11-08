@@ -42,6 +42,17 @@ cov:
 react-scripts:
 	docker-compose -f docker-compose-${e}.yml run client react-scripts test --coverage
 
+.PHONY: react
+react:
+	docker-compose -f docker-compose-${e}.yml run client react-scripts test --coverage
+
+.PHONY: python
+react:
+	docker-compose -f docker-compose-${e}.yml run users flake8 project
+	docker-compose -f docker-compose-${e}.yml run users bandit -ll -i -r ./
+	docker-compose -f docker-compose-${e}.yml run users python manage.py test
+	docker-compose -f docker-compose-${e}.yml run users python manage.py cov
+
 .PHONY: build
 build:
 	docker-compose -f docker-compose-${e}.yml up -d --build

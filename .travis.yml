@@ -4,7 +4,9 @@ services:
   - docker
 
 env:
-  DOCKER_COMPOSE_VERSION: 1.21.1
+  - DOCKER_COMPOSE_VERSION: 1.21.1
+  - TEST_SUITE=python
+  - TEST_SUITE=react
 
 before_install:
   - sudo rm /usr/local/bin/docker-compose
@@ -16,9 +18,11 @@ before_script:
   - export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
   - make build
 
+script: make ${TEST_SUITE}
+
 jobs:
   include:
-    - stage: test
+    - stage: together-tests
       script:
         - make cov
         - make bandit
