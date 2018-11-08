@@ -1,10 +1,13 @@
 import os
 from flask import Flask
 from flask_cors import CORS
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
-# # instantiate the db
+# instantiate the db
 db = SQLAlchemy()
+# migrate database schema's
+migrate = Migrate()
 
 
 def create_app(script_info=None):
@@ -19,6 +22,7 @@ def create_app(script_info=None):
 
     # set up extensions
     db.init_app(app)
+    migrate.init_app(app, db)
     if app.config['DEBUG_TB_ENABLED']:
         from flask_debugtoolbar import DebugToolbarExtension
         toolbar = DebugToolbarExtension()
