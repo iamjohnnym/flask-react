@@ -16,11 +16,14 @@ before_script:
   - export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
   - make build
 
-script:
-  - make cov
-  - make bandit
-  - make flake
-  - make react-scripts
+jobs:
+  include:
+    - stage: test
+      script:
+        - make cov
+        - make bandit
+        - make flake
+        - make react-scripts
 
 after_script:
   - make down
