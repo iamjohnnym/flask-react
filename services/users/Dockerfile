@@ -1,10 +1,9 @@
 # base image
-FROM python:3.7.0-alpine
+FROM python:3.7-alpine AS builder
 
-# new
 # install dependencies
 RUN apk update && \
-    apk add --virtual build-deps gcc python-dev musl-dev && \
+    apk add --virtual build-deps gcc musl-dev && \
     apk add postgresql-dev && \
     apk add netcat-openbsd
 
@@ -23,6 +22,8 @@ COPY . /usr/src/app
 
 # install dependencies
 RUN poetry install
+
+FROM builder AS release
 
 # run server
 CMD ["/usr/src/app/entrypoint.sh"]
