@@ -23,7 +23,7 @@ services:
     build:
       context: ./services/client
       dockerfile: Dockerfile
-      target: release
+      target: dev
     volumes:
       - './services/client:/usr/src/app'
       - '/usr/src/app/node_modules'
