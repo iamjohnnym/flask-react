@@ -5,7 +5,8 @@ services:
   users:
     build:
       context: ./services/users
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile
+      target: release
     volumes:
       - './services/users:/usr/src/app'
     ports:
@@ -21,7 +22,8 @@ services:
   client:
     build:
       context: ./services/client
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile
+      target: dev
     volumes:
       - './services/client:/usr/src/app'
       - '/usr/src/app/node_modules'
@@ -46,7 +48,8 @@ services:
   nginx:
     build:
       context: ./services/nginx
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile
+      target: release
     restart: always
     ports:
       - 80:80

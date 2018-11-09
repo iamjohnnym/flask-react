@@ -23,7 +23,7 @@ def create_app(script_info=None):
     # set up extensions
     db.init_app(app)
     migrate.init_app(app, db)
-    if app.config['DEBUG_TB_ENABLED']:
+    if app.config.get('DEBUG_TB_ENABLED', False):
         from flask_debugtoolbar import DebugToolbarExtension
         toolbar = DebugToolbarExtension()
         toolbar.init_app(app)
