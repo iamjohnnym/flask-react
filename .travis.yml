@@ -1,33 +1,22 @@
 sudo: required
-
 services:
-  - docker
-
+- docker
 env:
+  matrix:
   - TEST_SUITE=python
   - TEST_SUITE=react
-
-before_install:
-  - export DOCKER_COMPOSE_VERSION=1.21.1
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
-
+  global:
+  - secure: YwA4hLqqC36AJm16FabqvECcMw95jQBkOoC7xaZ/qkOPp73eq7kVVkeE7obXHJ5mUiHb0cdKh+viItSIcnzb67e9kNBs9/XZlam7igBP8/1AMV2u7MsuOVFPKPTY/dRntfyhuM/tHnF8B79OIEI7fCRX9YCc7lbvbzeGUpOUuAUFIhyHIt4g15mriyFJx4SZv+NZ9FXH9trZjP/kVRPOHkpD1osc+8D+5sGtaJJomlJ6q+33bsFMY7CgkY+EEFUwoil2Y/FV5LR19fDhzk5DgaVbPQKN4frOcuxqO6vcVhUKp+7ExgAPqy/Knl07ilsQ+FQ5SZZGcmwgKPTYOCkl86s5rF+EyGCk+534MSreSDGdbtK4pzR4eDycE0twoOeB5CTat1zYjhwUE/w5W2EW925tnXfl78pxHGL4hInMqYosYMYF2gtnkhktvXPgk/oGYi28nLL564rwWhL3fk0FRhHiei9dqDxx5uCj/kIkLQMC/ZGNPysorYdn87O7YukBIQ1F4UGXP/XZWukzYLFMnIS/r81tXo30mb7lDgPgHvyxTJkNf7so3s2HvE478xFCdo5HH1pfBy4JMhve3NR0p2XDx8JZLxLKXitRp2kxLjrRn63Esn/ySrSiBAKy+srGKeO/3TVe3dpgcVsxXHhkSSa0NBDMha5j2LPuiHO2ylc=
+  - secure: aoZgyn8fLosjutx6VhBL+lDE7/YROoT6M+6Suxg/w54F3gD6OoTyKUgLvXGeYhrB9MSYAJ4ojOmOF1AyxyxrXesc+KXXdpTlick55wvnf4NkROIeqIxr/hNKH1n82dwfmIAJExWl953RqhZF9+f4244oTc9Y8IUqNo6y+uAaI5+8RBlUIWbq0iaJjnVnTtapfpVqZaBY7c8kDniyRboGEK/2iiLHb21tRCppk8z9xsaxxPGIMBLsfBRhb6nmuqV2eTcRWGDcGqI3BaGO5o57u3YvEKrFjs6SCPIVT3f5H/OF7itLDYMTQ33/6RtVSgcQb8RnL6/lnSal+efYiAZpiRt7O/OdqoEI16pw69ZqPo6OkBVOQOri60VPCezbwdtmdxN4FasBKiCKK0LryAt72QgVeXBcqkLEylB0ng1zAnfx+nGoRDE40ThYzaVd7UGxWg9W5rzB4JpRtrAgu5UCVzhnMAdZZrVJan7cwF2462aRcnx49cqB1GktHf+qgF+W/XgojI2g6CC//gt9aAOsk5IqX8YNhIe51kUTkKvS9BXJc6ghaMU5lEIsR1EqlkcMVvIR1bRNEY7cYzfmxuK7O98VTpPaCcDt2LXM0xsdWTs8+YVNRxcNvs7PJXCMd/DPp0G3UTPD2+aD254Izhi6Y6AJbzdI2H04/wy5phYfhM0=
 before_script:
-  - export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
-  - make build
-
+- export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
+- make build
 script: make ${TEST_SUITE}
-
 jobs:
   include:
-    - stage: together-tests
-      script:
-        - make cov
-        - make bandit
-        - make flake
-        - make react-scripts
-
+  - stage: deploy
+    script:
+      - echo "I will do something neat one day"
+    env: TEST_SUITE=none
 after_script:
-  - make down
+- make down

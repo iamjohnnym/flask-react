@@ -47,7 +47,7 @@ react:
 	docker-compose -f docker-compose-${e}.yml run client react-scripts test --coverage
 
 .PHONY: python
-react:
+python:
 	docker-compose -f docker-compose-${e}.yml run users flake8 project
 	docker-compose -f docker-compose-${e}.yml run users bandit -ll -i -r ./
 	docker-compose -f docker-compose-${e}.yml run users python manage.py test
